@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Smart Bus",
+            "type": "shell",
+            "command": "npm run dev",
+            "options": {
+                "cwd": "${workspaceFolder}/smart-bus-frontend"
+            },
+            "isBackground": true,
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Bus Reservation System</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand fw-bold"
+            href="#"
+            onclick="showPage('home'); return false;">
+
+            🚌 Smart Bus
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+
+                <!-- HOME -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('home'); return false;">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <!-- SEARCH BUS -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('searchBus'); return false;">
+
+                        Search Bus
+
+                    </a>
+
+                </li>
+
+
+                <!-- MY BOOKINGS -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('myBookings'); return false;">
+
+                        My Bookings
+
+                    </a>
+
+                </li>
+
+
+                <!-- ABOUT -->
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('about'); return false;">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <!-- LOGIN -->
+
+                <li
+                    class="nav-item"
+                    id="loginLink">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="
+                        document.getElementById('loginEmail').value='';
+                        document.getElementById('loginPassword').value='';
+                        showPage('login');
+                        return false;">
+
+                        Login
+
+                    </a>
+
+                </li>
+
+
+                <!-- SIGN UP -->
+
+                <li
+                    class="nav-item"
+                    id="signupLink">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('signup'); return false;">
+
+                        Sign Up
+
+                    </a>
+
+                </li>
+
+
+                <!-- ADMIN -->
+
+                <li
+                    class="nav-item"
+                    id="adminNav"
+                    style="display:none;">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="showPage('admin'); return false;">
+
+                        👨‍💼 Admin
+
+                    </a>
+
+                </li>
+
+
+                <!-- LOGOUT -->
+
+                <li
+                    class="nav-item"
+                    id="logoutLink"
+                    style="display:none;">
+
+                    <a
+                        class="nav-link"
+                        href="#"
+                        onclick="logoutUser(); return false;">
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section
+    id="home"
+    class="page active-page">
+
+    <div class="hero">
+
+        <div class="container text-center">
+
+            <h1>
+                Smart Bus Reservation System
+            </h1>
+
+            <p>
+                Search, reserve and manage your bus journey easily.
+            </p>
+
+            <p>
+                Find direct buses or get smart alternative route
+                recommendations when a direct bus is unavailable.
+            </p>
+
+
+            <button
+                class="btn btn-light btn-lg me-2"
+                onclick="showPage('searchBus')">
+
+                🔎 Search Buses
+
+            </button>
+
+
+            <button
+                class="btn btn-outline-light btn-lg"
+                onclick="showPage('about')">
+
+                Learn More
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <div class="container py-5">
+
+        <div class="page-title">
+
+            <h2>
+                Smart Features
+            </h2>
+
+            <p>
+                Useful features for a convenient bus reservation experience.
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        🔎
+                    </div>
+
+                    <h3>
+                        Easy Bus Search
+                    </h3>
+
+                    <p>
+                        Search buses using source, destination
+                        and journey date.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        💺
+                    </div>
+
+                    <h3>
+                        Smart Seat Selection
+                    </h3>
+
+                    <p>
+                        Select the required number of seats
+                        according to your passengers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        🧭
+                    </div>
+
+                    <h3>
+                        Alternative Route
+                    </h3>
+
+                    <p>
+                        If no direct bus is available,
+                        the system recommends a nearby boarding place.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        👩
+                    </div>
+
+                    <h3>
+                        Female Seat Safety
+                    </h3>
+
+                    <p>
+                        Female occupied seats are displayed separately
+                        and adjacent-seat restrictions can be applied.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        🎫
+                    </div>
+
+                    <h3>
+                        Digital Ticket
+                    </h3>
+
+                    <p>
+                        Get your reservation details after successful booking.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="feature-card text-center">
+
+                    <div class="feature-icon">
+                        👨‍💼
+                    </div>
+
+                    <h3>
+                        Admin Dashboard
+                    </h3>
+
+                    <p>
+                        Manage buses, users and bookings.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH BUS
+===================================================== -->
+
+<section
+    id="searchBus"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                🔎 Search Available Buses
+            </h2>
+
+            <p>
+                Enter your journey details below.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+
+            <form
+                onsubmit="searchBuses(event)">
+
+
+                <!-- FROM -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        From
+                    </label>
+
+                    <input
+                        type="text"
+                        id="source"
+                        class="form-control"
+                        placeholder="Enter starting location"
+                        required>
+
+                </div>
+
+
+                <!-- TO -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        To
+                    </label>
+
+                    <input
+                        type="text"
+                        id="destination"
+                        class="form-control"
+                        placeholder="Enter destination"
+                        required>
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Journey Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="journeyDate"
+                        class="form-control"
+                        required>
+
+                </div>
+
+
+                <!-- PASSENGERS -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Number of Passengers
+                    </label>
+
+                    <select
+                        id="passengers"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            Select Number of Passengers
+                        </option>
+
+                        <option value="1">
+                            1 Passenger
+                        </option>
+
+                        <option value="2">
+                            2 Passengers
+                        </option>
+
+                        <option value="3">
+                            3 Passengers
+                        </option>
+
+                        <option value="4">
+                            4 Passengers
+                        </option>
+
+                        <option value="5">
+                            5 Passengers
+                        </option>
+
+                        <option value="6">
+                            6 Passengers
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    🔎 Search Available Buses
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- =================================================
+             DIRECT BUS RESULTS
+        ================================================== -->
+
+        <div
+            id="busResults"
+            class="mt-5">
+
+        </div>
+
+
+        <!-- =================================================
+             SMART ALTERNATIVE ROUTE
+        ================================================== -->
+
+        <div
+            id="alternativeRoutes"
+            class="mt-4">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEAT SELECTION
+===================================================== -->
+
+<section
+    id="seatSelection"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                💺 Select Your Seats
+            </h2>
+
+            <p>
+                Select the required number of seats.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+
+            <!-- BUS INFORMATION -->
+
+            <div class="text-center mb-4">
+
+                <h4 id="selectedBusName">
+                    Bus Name
+                </h4>
+
+                <p id="selectedBusRoute">
+                    Route
+                </p>
+
+                <p>
+
+                    Number of Passengers:
+
+                    <strong id="selectedPassengerCount">
+                        0
+                    </strong>
+
+                </p>
+
+            </div>
+
+
+            <!-- FRONT -->
+
+            <div class="text-center mb-3">
+
+                <strong>
+                    🚌 FRONT
+                </strong>
+
+            </div>
+
+
+            <!-- LEGEND -->
+
+            <div class="seat-legend mb-4">
+
+
+                <span>
+                    🟩 Available
+                </span>
+
+
+                <span>
+                    🟦 Selected
+                </span>
+
+
+                <span>
+                    🟥 Female Occupied
+                </span>
+
+
+                <span>
+                    ⬛ Male Occupied
+                </span>
+
+
+                <span>
+                    🔒 Restricted
+                </span>
+
+            </div>
+
+
+            <!-- SEAT CONTAINER -->
+
+            <div
+                id="seatContainer"
+                class="seat-container">
+
+            </div>
+
+
+            <!-- SELECTED SEATS -->
+
+            <div class="mt-4">
+
+                <label class="form-label">
+                    Selected Seats
+                </label>
+
+                <input
+                    type="text"
+                    id="selectedSeat"
+                    class="form-control"
+                    readonly
+                    placeholder="Select required number of seats">
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="seatMessage"
+                class="mt-3 text-center">
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn btn-primary w-100 mt-3"
+                onclick="continueToBooking()">
+
+                Continue to Passenger Details
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PASSENGER DETAILS
+===================================================== -->
+
+<section
+    id="booking"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                👥 Passenger Details
+            </h2>
+
+            <p>
+                Enter details for every passenger.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+
+            <form
+                onsubmit="confirmBooking(event)">
+
+
+                <!-- DYNAMIC PASSENGERS -->
+
+                <div
+                    id="passengerDetailsContainer">
+
+                </div>
+
+
+                <!-- BOOKING SUMMARY -->
+
+                <div
+                    id="bookingSummary"
+                    class="booking-summary mb-4">
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    🎫 Continue to Payment
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PAYMENT
+===================================================== -->
+
+<section
+    id="payment"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                💳 Payment
+            </h2>
+
+            <p>
+                Complete your booking.
+            </p>
+
+        </div>
+
+
+        <div class="form-container">
+
+
+            <div
+                id="paymentSummary"
+                class="booking-summary mb-4">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Payment Method
+                </label>
+
+                <select
+                    id="paymentMethod"
+                    class="form-select"
+                    required>
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="Card">
+                        Debit / Credit Card
+                    </option>
+
+                    <option value="Net Banking">
+                        Net Banking
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn btn-primary w-100"
+                onclick="makePayment()">
+
+                💳 Pay & Confirm Booking
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TICKET
+===================================================== -->
+
+<section
+    id="ticket"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                🎫 Booking Confirmed
+            </h2>
+
+            <p>
+                Your bus ticket has been successfully booked.
+            </p>
+
+        </div>
+
+
+        <div
+            class="form-container"
+            id="ticketDetails">
+
+        </div>
+
+
+        <div class="text-center mt-4">
+
+            <button
+                type="button"
+                class="btn btn-primary me-2"
+                onclick="printTicket()">
+
+                🖨️ Print Ticket
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-success"
+                onclick="showPage('myBookings')">
+
+                📋 My Bookings
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MY BOOKINGS
+===================================================== -->
+
+<section
+    id="myBookings"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                📋 My Bookings
+            </h2>
+
+            <p>
+                View your bus reservations.
+            </p>
+
+        </div>
+
+
+        <div
+            id="bookingList"
+            class="row">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section
+    id="login"
+    class="page">
+
+    <div class="container">
+
+        <div class="form-container login-container">
+
+
+            <div class="page-title">
+
+                <h2>
+                    🔐 Login
+                </h2>
+
+                <p>
+                    Login to your account.
+                </p>
+
+            </div>
+
+
+            <form
+                onsubmit="loginUser(event)">
+
+
+                <!-- EMAIL -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="mb-2">
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <div class="password-container">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            class="form-control"
+                            placeholder="Enter password"
+                            required>
+
+                        <span
+                            class="eye-icon"
+                            onclick="togglePassword('loginPassword', this)">
+
+                            👁️
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORGOT -->
+
+                <div class="text-end mb-3">
+
+                    <a
+                        href="#"
+                        onclick="
+                        document.getElementById('forgotEmail').value='';
+                        document.getElementById('newPassword').value='';
+                        document.getElementById('confirmNewPassword').value='';
+                        showPage('forgotPassword');
+                        return false;">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    🔐 Login
+
+                </button>
+
+            </form>
+
+
+            <p class="text-center mt-3">
+
+                Don't have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                    document.getElementById('signupName').value='';
+                    document.getElementById('signupEmail').value='';
+                    document.getElementById('signupPhone').value='';
+                    document.getElementById('signupCity').value='';
+                    document.getElementById('signupPassword').value='';
+                    document.getElementById('confirmPassword').value='';
+                    showPage('signup');
+                    return false;">
+
+                    Sign Up
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FORGOT PASSWORD
+===================================================== -->
+
+<section
+    id="forgotPassword"
+    class="page">
+
+    <div class="container">
+
+        <div class="form-container login-container">
+
+
+            <div class="page-title">
+
+                <h2>
+                    🔑 Forgot Password
+                </h2>
+
+                <p>
+                    Create a new password using your registered email.
+                </p>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Registered Email
+                </label>
+
+                <input
+                    type="email"
+                    id="forgotEmail"
+                    class="form-control"
+                    placeholder="Enter registered email"
+                    required>
+
+            </div>
+
+
+            <!-- NEW PASSWORD -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    New Password
+                </label>
+
+                <div class="password-container">
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        class="form-control"
+                        placeholder="Enter new password"
+                        required>
+
+                    <span
+                        class="eye-icon"
+                        onclick="togglePassword('newPassword', this)">
+
+                        👁️
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Confirm New Password
+                </label>
+
+                <div class="password-container">
+
+                    <input
+                        type="password"
+                        id="confirmNewPassword"
+                        class="form-control"
+                        placeholder="Confirm new password"
+                        required>
+
+                    <span
+                        class="eye-icon"
+                        onclick="togglePassword('confirmNewPassword', this)">
+
+                        👁️
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn btn-primary w-100"
+                onclick="resetPassword()">
+
+                🔑 Create New Password
+
+            </button>
+
+
+            <p class="text-center mt-3">
+
+                <a
+                    href="#"
+                    onclick="
+                    document.getElementById('loginEmail').value='';
+                    document.getElementById('loginPassword').value='';
+                    showPage('login');
+                    return false;">
+
+                    ← Back to Login
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SIGN UP
+===================================================== -->
+
+<section
+    id="signup"
+    class="page">
+
+    <div class="container">
+
+        <div class="form-container">
+
+
+            <div class="page-title">
+
+                <h2>
+                    📝 Create Account
+                </h2>
+
+                <p>
+                    Register to use the Smart Bus Reservation System.
+                </p>
+
+            </div>
+
+
+            <form
+                onsubmit="signupUser(event)">
+
+
+                <!-- NAME -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        class="form-control"
+                        placeholder="Enter full name"
+                        required>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        class="form-control"
+                        placeholder="Enter email"
+                        required>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="signupPhone"
+                        class="form-control"
+                        placeholder="Enter phone number"
+                        required>
+
+                </div>
+
+
+                <!-- CITY -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupCity"
+                        class="form-control"
+                        placeholder="Enter city"
+                        required>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        class="form-control"
+                        placeholder="Create password"
+                        required>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        class="form-control"
+                        placeholder="Confirm password"
+                        required>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    📝 Create Account
+
+                </button>
+
+            </form>
+
+
+            <p class="text-center mt-3">
+
+                Already have an account?
+
+                <a
+                    href="#"
+                    onclick="
+                    document.getElementById('loginEmail').value='';
+                    document.getElementById('loginPassword').value='';
+                    showPage('login');
+                    return false;">
+
+                    Login
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    id="about"
+    class="page">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h2>
+                About Smart Bus Reservation System
+            </h2>
+
+            <p>
+                A smart and convenient online bus reservation platform.
+            </p>
+
+        </div>
+
+
+        <div class="about-box">
+
+            <h3>
+                What is this system?
+            </h3>
+
+
+            <p>
+                The Smart Bus Reservation System is a web-based
+                application that allows passengers to search and
+                reserve bus tickets online.
+            </p>
+
+
+            <p>
+                Passengers can select their source, destination,
+                journey date and number of passengers.
+            </p>
+
+
+            <p>
+                The system provides seat selection and passenger
+                details before completing the booking.
+            </p>
+
+
+            <h4 class="mt-4">
+                🧭 Smart Alternative Route Recommendation
+            </h4>
+
+
+            <p>
+                If a direct bus is not available between the selected
+                source and destination, the system checks nearby
+                boarding locations and recommends an available
+                alternative route.
+            </p>
+
+
+            <p>
+                For example, if there is no bus from
+                <strong>Dharwad → Bengaluru</strong>,
+                the system can recommend:
+            </p>
+
+
+            <div class="alert alert-info">
+
+                🥇 <strong>Recommended Alternative</strong>
+
+                <br><br>
+
+                📍 Hubballi → Bengaluru
+
+                <br>
+
+                🚌 Bus available
+
+                <br>
+
+                💺 Seats available
+
+                <br>
+
+                <button
+                    class="btn btn-primary mt-2"
+                    onclick="searchAlternativeRoute('Hubballi')">
+
+                    Search This Route
+
+                </button>
+
+            </div>
+
+
+            <h4 class="mt-4">
+                👩 Female Seat Safety
+            </h4>
+
+
+            <p>
+                Female-occupied seats can be displayed in red/orange.
+                The system can restrict male passengers from selecting
+                seats directly beside female passengers.
+            </p>
+
+
+            <h4 class="mt-4">
+                👨‍💼 Admin
+            </h4>
+
+
+            <p>
+                The administrator can manage buses, routes, users,
+                seats and reservations.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
+
+<section
+    id="admin"
+    class="page">
+
+    <div class="container">
+
+
+        <div class="page-title">
+
+            <h2>
+                👨‍💼 Admin Dashboard
+            </h2>
+
+            <p>
+                Manage the Smart Bus Reservation System.
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="row text-center mb-4">
+
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-icon">
+                        🚌
+                    </div>
+
+                    <h3 id="adminTotalBuses">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Buses
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-icon">
+                        👥
+                    </div>
+
+                    <h3 id="adminTotalUsers">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Users
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div class="stats-icon">
+                        🎫
+                    </div>
+
+                    <h3 id="adminTotalBookings">
+                        0
+                    </h3>
+
+                    <p>
+                        Total Bookings
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN OPTIONS -->
+
+        <div class="text-center mb-4">
+
+
+            <button
+                type="button"
+                class="btn btn-primary me-2"
+                onclick="showAdminBuses()">
+
+                🚌 Manage Buses
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-success me-2"
+                onclick="showAdminUsers()">
+
+                👥 Manage Users
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-dark"
+                onclick="showAdminBookings()">
+
+                🎫 Manage Bookings
+
+            </button>
+
+        </div>
+
+
+        <!-- ADMIN CONTENT -->
+
+        <div
+            id="adminContent"
+            class="mt-4">
+
+            <div class="text-center text-muted">
+
+                Select an option above.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bg-primary text-white text-center p-4">
+
+    <p class="mb-0">
+
+        © 2026 Smart Bus Reservation System
+
+    </p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =====================================================
+     CUSTOM JS
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
